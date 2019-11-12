@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>工具栏</title>
+    <script src="../echarts.min.js"></script>
+</head>
+<body>
+    <div id="main" style="width:900px;height: 600px;"></div>
+    <script>
+        var myChart = echarts.init(document.getElementById('main'));
+
+        var option = {
+            title:{
+                text: 'Echarts 入门示例',
+            },
+            toolbox:{
+                show: true,
+                feature: {
+                    //保存为图片
+                    saveAsImage:{
+                        show: true
+                    },
+                    //数据视图工具，可以展现当前图标所用的数据，编辑后可以动态更新
+                    dataView:{
+                        show: true
+                    },
+                    //还原
+                    restore:{
+                        show: true
+                    },
+                    //数据区域缩放，目前只支持直角坐标系的缩放
+                    dataZoom: {
+                        show: true
+                    },
+                    magicType:{
+                        type:['line','bar']
+                    }
+
+                }
+            },
+            legend: {
+                data: ['销量']
+            },
+            xAxis: {
+                data:["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
+            },
+            yAxis:{},
+            series:[{
+                name:'销量',
+                type:'bar',
+                data:[5,20,36,10,10,20]
+            }]
+        };
+
+        //使用刚指定的配置项和数据显示图表
+        myChart.setOption(option);
+    </script>
+</body>
+</html>

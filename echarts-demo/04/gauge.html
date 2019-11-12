@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>仪表图</title>
+    <script src="../echarts.min.js"></script>
+</head>
+<body>
+    <div id="main" style="width:900px;height: 600px;"></div>
+    <script>
+        var myChart = echarts.init(document.getElementById('main'));
+
+        var option = {
+            title:{
+                text: '某网站用户访问来源',
+                subtext: '纯属虚构',
+                x:'center'
+                
+            },
+            tooltip:{
+               trigger:'item',
+               formatter:"{a} <br/>{b} : {c}%"
+
+            },
+            toolbox:{
+                feature:{
+                    restore:{},
+                    saveAsImage:{}
+                }
+            },
+            series:[{
+                name:'业务指标',
+                type:'gauge',
+                detail:{formatter: '{value}%'},
+                data:[
+                    {value:32,name:'完成率'},
+                ],
+               
+            }]
+        };
+
+        //使用刚指定的配置项和数据显示图表
+        myChart.setOption(option);
+
+        //动态修改仪表图数据
+        setInterval(function(){
+            //使用随机数生成data
+            option.series[0].data[0].value = (Math.random() * 100).toFixed(2)- 0;
+            
+            myChart.setOption(option,true);
+        },2000)
+    </script>
+</body>
+</html>
